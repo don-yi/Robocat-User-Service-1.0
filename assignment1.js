@@ -1,12 +1,11 @@
-const http = require('http')
-const moment = require('moment')
-const port = '3100'
+const express = require('express')
+const app = express()
+const port = 3100
 
-http.createServer((req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello World\n')
-}).listen(port, () => {
-  let timestamp = moment()
-  console.log(`Server started on port ${port} at ${timestamp}`)
+app.get('/', (req, res) => {
+  console.log('Hit the root get handler')
+  res.send('Hello, world!')
 })
+
+app.listen(port)
+console.log('Started server.')
