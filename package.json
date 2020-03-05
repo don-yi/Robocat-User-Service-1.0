@@ -1,0 +1,26 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "",
+  "main": "assignment1.js",
+  "dependencies": {
+    "base64url": "^3.0.1",
+    "express": "^4.17.1",
+    "moment": "^2.24.0",
+    "uuid4": "^1.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dennis-donguk-lee/Robocat-User-Service-1.0.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dennis-donguk-lee/Robocat-User-Service-1.0/issues"
+  },
+  "homepage": "https://github.com/dennis-donguk-lee/Robocat-User-Service-1.0#readme"
+}
