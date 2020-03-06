@@ -7,10 +7,6 @@ const uuid4 = require('uuid4')
 const app = express()
 const port = 3100
 
-// 
-let allUsrById = {}
-let allUsrByUsrname = {}
-
 // Use expr
 app.use(express.json())
 
@@ -24,11 +20,14 @@ app.get('/', (req, res) => {
 app.listen(port)
 console.log('Started server.')
 
+// Set db
+let allUsrById = {}
+let allUsrByUname = {}
+
 // Creates a new user, succeeding if that user did not already exist
 app.post('/api/v1/users/', (req, res) => {
   // Get usr data from req
   let usr = req.body
-  // ??????????????? why uname to id???
   usr.id = base64url(usr.username)
 
   // Prevent dupl
@@ -38,14 +37,34 @@ app.post('/api/v1/users/', (req, res) => {
 
   // Assign to all usr ls
   allUsrById[usr.id] = usr
-  allUsrByUsrname[usr.username] = usr
-  
+  allUsrByUname[usr.username] = usr
+
   // Send usr data
   res.send(usr)
 })
 
 // Login
 app.post('/api/v1/login/', (req, res) => {
-  let usr = allUsrByUsrname[req.body.username]
+  // Get usr w/ req uname
+  let usr = allUsrByUname[req.body.username]
 
+  // Check for bad uname
+  if (!usr) {
+    res.sendStatus(400)
+  }
+
+  // Check for bad password
+  if (req.body.password != usr.password) {
+    res.sendStatus(403)
+  }
+
+  // Session resource
+  let session = {}
+
+  // Gen session
+  session.session = uuid4()
+  session.token = uuid4()
+
+  // Send session data
+  res.send(session)
 })
