@@ -68,3 +68,11 @@ app.post('/api/v1/login/', (req, res) => {
   // Send session data
   res.send(session)
 })
+
+// Retrieves the specified user by ID (the generated value)
+app.get('/api/v1/users/:id', (req, res) => {
+  // find session with the same id in the same resource and
+  // compare it with the one in the request
+  //console.log(req.session)
+  res.send(allUsrById[req.params.id])
+})
